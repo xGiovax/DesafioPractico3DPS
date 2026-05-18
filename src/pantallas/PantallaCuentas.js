@@ -11,6 +11,7 @@ import { validarNombre, mensajeErrorFirestore } from '../utils/errores';
 const TIPOS_CUENTA = ['Efectivo', 'Tarjeta débito', 'Tarjeta crédito', 'Cuenta banco', 'Ahorros', 'Otro'];
 
 export default function PantallaCuentas() {
+  //definicion de todos los datos que la pantalla utiliza
   const { usuario } = useAuth();
   const [cuentas, setCuentas] = useState([]);
   const [transacciones, setTransacciones] = useState([]);
@@ -19,6 +20,7 @@ export default function PantallaCuentas() {
   const [tipoSeleccionado, setTipoSeleccionado] = useState('Efectivo');
   const [cargando, setCargando] = useState(false);
 
+  //coneccion con el firebase para resivir actualicaciones en las cuentas
   useEffect(() => {
     const unsubCuentas = escucharCuentas(usuario.uid, setCuentas);
     const unsubTrans = escucharTransacciones(usuario.uid, setTransacciones);
@@ -27,7 +29,7 @@ export default function PantallaCuentas() {
       unsubTrans();
     };
   }, []);
-
+//hace las transacciones de una cuenta y suma o resta ingresos 
   const calcularSaldo = (cuentaId) => {
     return transacciones
       .filter(t => t.cuentaId === cuentaId)
@@ -35,7 +37,7 @@ export default function PantallaCuentas() {
         return t.tipo === 'ingreso' ? total + t.monto : total - t.monto;
       }, 0);
   };
-
+//validacion de las cuentas para guardar la cuenta
 const manejarCrearCuenta = async () => {
   const errorNombre = validarNombre(nombreCuenta, 'El nombre de la cuenta');
   if (errorNombre) {
@@ -55,6 +57,7 @@ const manejarCrearCuenta = async () => {
   }
 };
 
+  //muestra el nombre de usuario, el saldo si es positivo y en genativo 
   const manejarEliminarCuenta = (cuenta) => {
     Alert.alert(
       'Eliminar cuenta',
@@ -87,8 +90,9 @@ const manejarCrearCuenta = async () => {
     };
     return iconos[tipo] || '📁';
   };
-
-  const renderCuenta = ({ item }) => {
+  
+//funcion encargada del diseño visual de cada targeta en la lista
+  const renderCuenta = ({ item }) => { //representa los datos de una sola cuenta
     const saldo = calcularSaldo(item.id);
     return (
       <View style={estilos.tarjetaCuenta}>
@@ -113,7 +117,7 @@ const manejarCrearCuenta = async () => {
       </View>
     );
   };
-
+// sumatoria de todas las cuentas de un usuario
   const saldoTotal = cuentas.reduce((total, cuenta) => {
     return total + calcularSaldo(cuenta.id);
   }, 0);
@@ -131,7 +135,7 @@ const manejarCrearCuenta = async () => {
         </TouchableOpacity>
       </View>
 
-      {/* Tarjeta resumen total */}
+      // Tarjeta que muestra el saldo acumulado y cuantas cuentas regristradas hay en total
       <View style={estilos.tarjetaTotal}>
         <Text style={estilos.labelTotal}>Balance Total</Text>
         <Text style={[
@@ -145,7 +149,7 @@ const manejarCrearCuenta = async () => {
         </Text>
       </View>
 
-      {/* Lista de cuentas */}
+      // Lista de cuentas, si es 0 muestra mensaje de vacio 
       {cuentas.length === 0 ? (
         <View style={estilos.vacio}>
           <Text style={estilos.textoVacio}></Text>
@@ -161,7 +165,7 @@ const manejarCrearCuenta = async () => {
         />
       )}
 
-      {/* Modal crear cuenta */}
+      // Modal crear cuenta 
       <Modal
         visible={modalVisible}
         animationType="slide"
@@ -181,7 +185,7 @@ const manejarCrearCuenta = async () => {
 
             <Text style={estilos.labelTipo}>Tipo de cuenta:</Text>
             <View style={estilos.contenedorTipos}>
-              {TIPOS_CUENTA.map(tipo => (
+              {TIPOS_CUENTA.map(tipo => ( //map para regorrer la lista de categorias
                 <TouchableOpacity
                   key={tipo}
                   style={[
