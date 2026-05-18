@@ -352,7 +352,7 @@ const estilos = StyleSheet.create({
   },
   titulo: { fontSize: 24, fontWeight: 'bold', color: '#1a1a2e' },
   btnAgregar: {
-    backgroundColor: '#4f46e5', borderRadius: 10,
+    backgroundColor: '#025b67', borderRadius: 10,
     paddingHorizontal: 16, paddingVertical: 8
   },
   textoBtnAgregar: { color: '#fff', fontWeight: 'bold' },
@@ -422,7 +422,7 @@ const estilos = StyleSheet.create({
     borderWidth: 1, borderColor: '#ddd',
     borderRadius: 20, paddingHorizontal: 12, paddingVertical: 7
   },
-  btnCategoriaActiva: { backgroundColor: '#4f46e5', borderColor: '#4f46e5' },
+  btnCategoriaActiva: { backgroundColor: '#025b67', borderColor: '#025b67' },
   textoCategoria: { color: '#555', fontSize: 13 },
   textoCategoriaActiva: { color: '#fff' },
   categoriaEditando: {
@@ -439,7 +439,7 @@ const estilos = StyleSheet.create({
     borderWidth: 1, borderColor: '#ddd'
   },
   btnGuardar: {
-    backgroundColor: '#4f46e5', borderRadius: 12,
+    backgroundColor: '#025b67', borderRadius: 12,
     padding: 15, alignItems: 'center', marginBottom: 10
   },
   textoGuardar: { color: '#fff', fontWeight: 'bold', fontSize: 16 },

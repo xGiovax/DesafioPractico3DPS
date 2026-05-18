@@ -418,7 +418,7 @@ const estilos = StyleSheet.create({
   },
   titulo: { fontSize: 24, fontWeight: 'bold', color: '#1a1a2e' },
   btnAgregar: {
-    backgroundColor: '#4f46e5', borderRadius: 10,
+    backgroundColor: '#025b67', borderRadius: 10,
     paddingHorizontal: 16, paddingVertical: 8
   },
   textoBtnAgregar: { color: '#fff', fontWeight: 'bold' },
@@ -431,7 +431,7 @@ const estilos = StyleSheet.create({
     flex: 1, paddingVertical: 8, borderRadius: 10,
     backgroundColor: '#f0f4f8', alignItems: 'center'
   },
-  btnFiltroActivo: { backgroundColor: '#4f46e5' },
+  btnFiltroActivo: { backgroundColor: '#025b67' },
   textoFiltro: { color: '#666', fontWeight: '600' },
   textoFiltroActivo: { color: '#fff' },
   filtrosCuenta: {
@@ -442,7 +442,7 @@ const estilos = StyleSheet.create({
     borderWidth: 1, borderColor: '#ddd',
     borderRadius: 20, paddingHorizontal: 14, paddingVertical: 6
   },
-  chipCuentaActivo: { backgroundColor: '#4f46e5', borderColor: '#4f46e5' },
+  chipCuentaActivo: { backgroundColor: '#025b67', borderColor: '#025b67' },
   textoChip: { color: '#555', fontSize: 13 },
   textoChipActivo: { color: '#fff' },
   tarjetaTransaccion: {

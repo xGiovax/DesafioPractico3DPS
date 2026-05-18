@@ -219,7 +219,7 @@ export default function PantallaDashboard() {
 
       {/* Tarjetas resumen */}
       <View style={estilos.contenedorTarjetas}>
-        <View style={[estilos.tarjeta, { backgroundColor: '#4f46e5' }]}>
+        <View style={[estilos.tarjeta, { backgroundColor: '#025b67' }]}>
           <Text style={estilos.labelTarjeta}>Saldo neto</Text>
           <Text style={estilos.montoTarjeta}>${saldoNeto.toFixed(2)}</Text>
         </View>

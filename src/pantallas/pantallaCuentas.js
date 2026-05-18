@@ -136,7 +136,7 @@ const manejarCrearCuenta = async () => {
         <Text style={estilos.labelTotal}>Balance Total</Text>
         <Text style={[
           estilos.montoTotal,
-          { color: saldoTotal >= 0 ? '#16a34a' : '#dc2626' }
+          { color: saldoTotal >= 0 ? '#c8fedc' : '#f1a2a2' }
         ]}>
           ${saldoTotal.toFixed(2)}
         </Text>
@@ -234,12 +234,12 @@ const estilos = StyleSheet.create({
   },
   titulo: { fontSize: 24, fontWeight: 'bold', color: '#1a1a2e' },
   btnAgregar: {
-    backgroundColor: '#4f46e5', borderRadius: 10,
+    backgroundColor: '#025b67', borderRadius: 10,
     paddingHorizontal: 16, paddingVertical: 8
   },
   textoBtnAgregar: { color: '#fff', fontWeight: 'bold' },
   tarjetaTotal: {
-    margin: 20, backgroundColor: '#4f46e5',
+    margin: 20, backgroundColor: '#025b67',
     borderRadius: 16, padding: 20, alignItems: 'center'
   },
   labelTotal: { color: '#c7d2fe', fontSize: 14 },
@@ -287,11 +287,11 @@ const estilos = StyleSheet.create({
     borderWidth: 1, borderColor: '#ddd',
     borderRadius: 20, paddingHorizontal: 14, paddingVertical: 7
   },
-  btnTipoActivo: { backgroundColor: '#4f46e5', borderColor: '#4f46e5' },
+  btnTipoActivo: { backgroundColor: '#025b67', borderColor: '#025b67' },
   textoTipo: { color: '#555', fontSize: 13 },
   textoTipoActivo: { color: '#fff' },
   btnGuardar: {
-    backgroundColor: '#4f46e5', borderRadius: 12,
+    backgroundColor: '#025b67', borderRadius: 12,
     padding: 15, alignItems: 'center', marginBottom: 10
   },
   textoGuardar: { color: '#fff', fontWeight: 'bold', fontSize: 16 },

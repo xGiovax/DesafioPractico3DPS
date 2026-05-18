@@ -101,10 +101,10 @@ const estilos = StyleSheet.create({
   entradaError: { borderColor: '#dc2626', borderWidth: 1.5 },
   textoError: { color: '#dc2626', fontSize: 12, marginBottom: 10, marginLeft: 4 },
   boton: {
-    backgroundColor: '#4f46e5', borderRadius: 12,
+    backgroundColor: '#025b67', borderRadius: 12,
     padding: 15, alignItems: 'center',
     marginTop: 10, marginBottom: 20
   },
   textoBoton: { color: '#fff', fontSize: 16, fontWeight: 'bold' },
-  enlace: { textAlign: 'center', color: '#4f46e5', fontSize: 15 },
+  enlace: { textAlign: 'center', color: '#025b67', fontSize: 15 },
 });
