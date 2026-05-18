@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';// guarda datos en memoria a corto plazo
 import {
   View, Text, StyleSheet, ScrollView,
   TouchableOpacity, Dimensions, Alert, ActivityIndicator
 } from 'react-native';
-import { BarChart, PieChart } from 'react-native-chart-kit';
+import { BarChart, PieChart } from 'react-native-chart-kit'; //herramienta para las barras y pastel
 import { useAuth } from '../contexto/ContextoAuth';
 import { escucharTransacciones } from '../firebase/transacciones';
 import { escucharCuentas } from '../firebase/cuentas';
@@ -16,13 +16,15 @@ const COLORES_GRAFICA = [
   '#d97706', '#16a34a', '#0891b2', '#4338ca', '#be185d'
 ];
 
-export default function PantallaDashboard() {
+export default function PantallaDashboard() { //extrae la info del usuario para cerrar sesión 
   const { usuario, cerrarSesion } = useAuth();
-  const [transacciones, setTransacciones] = useState([]);
+  const [transacciones, setTransacciones] = useState([]); //crea un casillero vacio para guardar cambios 
   const [cuentas, setCuentas] = useState([]);
-  const [mesActual, setMesActual] = useState(new Date());
+  const [mesActual, setMesActual] = useState(new Date()); // mide fecha del dia de hoy
   const [exportando, setExportando] = useState(false);
 
+  
+// se conecta con firebase para para mostart las transacciones del usuario en tiempo real
   useEffect(() => {
     const unsubTrans = escucharTransacciones(usuario.uid, setTransacciones);
     const unsubCuentas = escucharCuentas(usuario.uid, setCuentas);
@@ -41,7 +43,7 @@ export default function PantallaDashboard() {
     );
   });
 
-  // Calcular totales
+  // Calcular totales de gastos
   const totalIngresos = transaccionesMes
     .filter(t => t.tipo === 'ingreso')
     .reduce((total, t) => total + t.monto, 0);
@@ -141,8 +143,8 @@ export default function PantallaDashboard() {
     setMesActual(nuevo);
   };
 
-  // Función para manejar las acciones de exportación
-  const manejarExportar = () => {
+  // Función para manejar las acciones de exportación con una alerta para CVS o PDF
+  const manejarExportar = () => { 
     Alert.alert(
       'Exportar reporte',
       `¿En qué formato deseas exportar el reporte de ${nombreMes}?`,
@@ -152,7 +154,7 @@ export default function PantallaDashboard() {
           text: '📊 CSV',
           onPress: async () => {
             try {
-              setExportando(true);
+              setExportando(true); //manda a pedir a la base el documento
               await exportarCSV(transaccionesMes, cuentas, mesActual);
             } catch (e) {
               Alert.alert('Error', 'No se pudo exportar el CSV');
@@ -186,7 +188,7 @@ export default function PantallaDashboard() {
         <View>
           <Text style={estilos.saludo}>Hola,</Text>
           <Text style={estilos.email} numberOfLines={1}>
-            {usuario.email?.split('@')[0]}
+            {usuario.email?.split('@')[0]} // saludo + nombre del usuario
           </Text>
         </View>
         <View style={estilos.botonesEncabezado}>
@@ -206,7 +208,7 @@ export default function PantallaDashboard() {
         </View>
       </View>
 
-      {/* Selector de mes */}
+      // Selector de mes 
       <View style={estilos.selectorMes}>
         <TouchableOpacity onPress={() => cambiarMes(-1)} style={estilos.btnMes}>
           <Text style={estilos.textoBtnMes}>‹</Text>
@@ -217,7 +219,7 @@ export default function PantallaDashboard() {
         </TouchableOpacity>
       </View>
 
-      {/* Tarjetas resumen */}
+      // Tarjetas resumen del saldo neto
       <View style={estilos.contenedorTarjetas}>
         <View style={[estilos.tarjeta, { backgroundColor: '#025b67' }]}>
           <Text style={estilos.labelTarjeta}>Saldo neto</Text>
